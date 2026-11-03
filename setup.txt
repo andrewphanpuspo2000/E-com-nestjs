@@ -1,0 +1,5 @@
+
+
+1. run npm install prisma@prev @prisma/client@7 @prisma/config @prisma/adapter-pg pg 
+
+2. npx prisma init
