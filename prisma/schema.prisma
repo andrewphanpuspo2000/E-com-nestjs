@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -196,6 +196,19 @@ model Payment{
 model Category{
 
   id String @id @default(uuid())
+  name String
+  description String?
+  slug String @unique
+  imageUrl String?
+  isActive Boolean @default(true)
   products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt  
+
+  @@index([slug])
+  @@index([isActive])
+  @@map("categories")
+
 
 }

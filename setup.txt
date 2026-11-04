@@ -3,3 +3,11 @@
 1. run npm install prisma@prev @prisma/client@7 @prisma/config @prisma/adapter-pg pg 
 
 2. npx prisma init
+
+3. Buat schema untuk prisma
+
+4. buat prisma service dan module supaya bisa connect ke database
+
+5. install "npm i class-validator bcryptjs  @nestjs/jwt @nestjs/passport passport"
+
+6. install npm i --save @nestjs/config
