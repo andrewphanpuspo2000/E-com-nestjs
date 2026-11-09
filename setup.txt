@@ -11,3 +11,5 @@
 5. install "npm i class-validator bcryptjs  @nestjs/jwt @nestjs/passport passport"
 
 6. install npm i --save @nestjs/config
+
+7.Install @nestjs/swagger for testing api
