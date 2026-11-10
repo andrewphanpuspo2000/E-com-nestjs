@@ -11,6 +11,7 @@ import bcrypt from 'bcryptjs';
 import { randomBytes } from 'crypto';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/login.dto.js';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +20,7 @@ export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
+    private readonly config: ConfigService,
   ) {}
 
   async register(registerDto: RegisterDto): Promise<AuthResponseDto> {
@@ -73,7 +75,14 @@ export class AuthService {
     const refreshId = randomBytes(16).toString('hex');
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, { expiresIn: '15m' }),
-      this.jwtService.signAsync({ ...payload, refreshId }, { expiresIn: '7d' }),
+      this.jwtService.signAsync(
+        { ...payload, refreshId },
+
+        {
+          secret: this.config.getOrThrow<string>('JWT_REFRESH_SECRET'),
+          expiresIn: '7d',
+        },
+      ),
     ]);
 
     return { accessToken, refreshToken };

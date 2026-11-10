@@ -11,11 +11,15 @@ export class UserResponseDto {
   @ApiProperty({ description: 'User email address', example: 'abc@gmail.com' })
   email: string;
 
-  @ApiProperty({ description: 'User firstname', example: 'John' })
-  firstName: string;
+  @ApiProperty({
+    description: 'User firstname',
+    example: 'John',
+    nullable: true,
+  })
+  firstName: string | null;
 
-  @ApiProperty({ description: 'User lastname', example: 'Doe' })
-  lastName: string;
+  @ApiProperty({ description: 'User lastname', example: 'Doe', nullable: true })
+  lastName: string | null;
 
   @ApiProperty({ description: 'Role', enum: Role })
   role: Role;
