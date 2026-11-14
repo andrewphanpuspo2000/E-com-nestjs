@@ -1,6 +1,6 @@
 // DTO for querying categories
 
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Transform, Type } from 'class-transformer';
 import {
   IsBoolean,
@@ -10,7 +10,7 @@ import {
   Min,
 } from 'class-validator';
 export class QueryCategoryDto {
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Filter by active status',
     example: true,
   })
@@ -23,7 +23,7 @@ export class QueryCategoryDto {
   @IsOptional()
   isActive: boolean;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Search term to filter categories by name or description',
     example: 'electronics',
   })
@@ -31,7 +31,7 @@ export class QueryCategoryDto {
   @IsString()
   search?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Page number for pagination',
     example: 1,
     default: 1,
@@ -43,11 +43,15 @@ export class QueryCategoryDto {
   @IsOptional()
   page = 1;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'Number of items per page for pagination',
     example: 10,
     default: 10,
     minimum: 1,
   })
+  @Type(() => Number)
+  @IsNumber()
+  @Min(1)
+  @IsOptional()
   limit = 10;
 }

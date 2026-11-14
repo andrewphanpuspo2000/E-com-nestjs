@@ -37,14 +37,13 @@ export class CategoryService {
       throw new Error('Category with this slug already exist: ' + categorySlug);
     }
 
-    const category = this.prisma.category.create({
+    const category = await this.prisma.category.create({
       data: {
         name,
         slug: categorySlug,
         ...rest,
       },
     });
-
     return this.formatCategory(category, 0);
   }
 

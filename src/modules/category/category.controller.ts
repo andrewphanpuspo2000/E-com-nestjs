@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -43,7 +44,7 @@ export class CategoryController {
   @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiResponse({ status: 403, description: 'Forbidden' })
   async create(
-    createCategoryDto: CreateCategoryDto,
+    @Body() createCategoryDto: CreateCategoryDto,
   ): Promise<CategoryResponseDto> {
     return this.categoryService.createCategory(createCategoryDto);
   }
@@ -137,7 +138,7 @@ export class CategoryController {
   })
   async updated(
     @Param('id') id: string,
-    updateCategoryDto: UpdateCategoryDto,
+    @Body() updateCategoryDto: UpdateCategoryDto,
   ): Promise<CategoryResponseDto> {
     return this.categoryService.update(id, updateCategoryDto);
   }
