@@ -35,7 +35,7 @@ export class ProductResponseDto {
     description: 'Stock Keeping Unit',
     example: 'WH-100',
   })
-  sku: number;
+  sku: string;
 
   @ApiProperty({
     description: 'Product image url',
