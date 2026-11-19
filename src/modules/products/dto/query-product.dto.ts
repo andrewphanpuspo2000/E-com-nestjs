@@ -11,11 +11,11 @@ import {
 export class QueryProductDto {
   @ApiPropertyOptional({
     description: 'Filter by category',
-    example: 'Electronics',
+    example: 'dds45235-dfsf2342-dsfdsd321',
   })
   @IsString()
   @IsOptional()
-  category?: string;
+  categoryId?: string;
 
   @ApiPropertyOptional({
     description: 'Filter by active status',

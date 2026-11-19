@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
+  IsBoolean,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -25,7 +26,8 @@ export class CreateProductDto {
     example: 'High-quality wireless headphone with noise cancellation',
     required: false,
   })
-  description: string;
+  @IsString()
+  description?: string;
 
   @ApiProperty({
     description: 'Product price in USD',
@@ -80,5 +82,6 @@ export class CreateProductDto {
     default: true,
     required: true,
   })
+  @IsBoolean()
   isActive: boolean;
 }

@@ -7,7 +7,8 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './modules/users/users.module.js';
 import { CategoryModule } from './modules/category/category.module.js';
 import { ProductsModule } from './modules/products/products.module.js';
-
+import { OrdersModule } from './modules/orders/orders.module.js';
+import { ThrottlerModule } from '@nestjs/throttler';
 @Module({
   imports: [
     PrismaModule,
@@ -19,6 +20,13 @@ import { ProductsModule } from './modules/products/products.module.js';
     UsersModule,
     CategoryModule,
     ProductsModule,
+    OrdersModule,
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60,
+        limit: 10,
+      },
+    ]),
   ],
   controllers: [AppController],
   providers: [AppService],

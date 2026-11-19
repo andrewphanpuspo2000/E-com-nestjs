@@ -39,6 +39,11 @@ export class CreateCategoryDto {
   @MaxLength(100)
   slug?: string;
 
+  @ApiProperty({
+    example: 'http://image.com/image.png',
+    description: 'Category image',
+    required: false,
+  })
   @IsString()
   @IsOptional()
   @MaxLength(255)
